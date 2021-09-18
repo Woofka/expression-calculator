@@ -76,12 +76,12 @@ def convert_to_rpn(expr):
             continue
         if reading_num:
             num += expr[i]
-            if expr[i + 1] not in '0123456789':
+            if expr[i + 1] not in '0123456789.':
                 reading_num = False
                 rpn.append(num)
                 num = ''
         else:
-            if expr[i + 1] in '0123456789':
+            if expr[i + 1] in '0123456789.':
                 reading_num = True
                 num += expr[i]
             else:
@@ -138,7 +138,7 @@ def evaluate_expression(expr):
 
 
 def main():
-    calc_in = input('Enter an expression using integer numbers and "+ - * / ( )": ')
+    calc_in = input('Enter an expression using numbers and "+ - * / ( )": ')
     answ = evaluate_expression(calc_in)
     if answ == 'inf':
         print('An attempt to divide by 0 was made.')
@@ -147,9 +147,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# 2*((5+4)*3-2*10+7/2-4)
-# = 13
-# 2*((5+4)*3-2*10+7/2-4)/(7*14-2*49)
-# = inf
